@@ -38,7 +38,10 @@ section {
 .project {
     margin-bottom: 20px;
 }
-
+.del {
+    text-decoration: line-through;
+    color: rgb(0,0,0,0)
+}
 footer {
     text-align: center;
     padding: 10px 0;
