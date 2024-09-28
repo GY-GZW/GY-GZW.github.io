@@ -4,17 +4,24 @@ body {
     margin: 0;
     padding: 0;
 }
-
 .container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     margin: 30px auto;
-    color: #000000;
-    background-color: rgb(255,255,255,1);
-    text-align: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.1);
 }
 
 h1, h2, h3, h4, h5, h6, p {
-    color: #ffffff;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #000000;
 }
 
 .button {
@@ -22,7 +29,7 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 10px 20px;
     margin: 5px 0;
     background: #007bff;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     transition: background 0.3s;
@@ -30,11 +37,25 @@ h1, h2, h3, h4, h5, h6, p {
     text-decoration: none;
     font-size: 16px;
 }
-    .button:hover {
-        background-color: #2f74e1;
-    }
 
-img {
-    max-width: 100%;
-    height: auto;
+.software-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
 }
+
+.software-item {
+    display: inline-block;
+    background: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+    .software-item:hover {
+        background: #0056b3;
+    }
