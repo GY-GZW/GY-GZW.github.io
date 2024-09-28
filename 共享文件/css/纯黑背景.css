@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
+    background-color: #000000;
     margin: 0;
     padding: 0;
 }
@@ -9,27 +9,27 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 30px auto;
-    background: #000000;
+    background: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(255,255,255,0.1);
 }
 
 h1, h2, h3, h4, h5, h6, p {
-    color: #ffffff;
+    color: #000000;
     text-align: center;
     margin-bottom: 20px;
 }
 
 a {
-    color: #ffffff;
+    color: #000000;
 }
 .button {
     display: inline-block;
     padding: 10px 20px;
     margin: 5px 0;
     background: #007bff;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     transition: background 0.3s;
