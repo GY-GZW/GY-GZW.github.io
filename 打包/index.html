@@ -1,26 +1,18 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="\favicon.ico" type="image/x-icon">
     <title>TurboWarp Packager - Convert Scratch projects to HTML, EXE, and more</title>
     <meta name="description" content="Converts Scratch 3, 2, or 1 projects into HTML files, zip archives, or executable programs for Windows, macOS, and Linux. Faster and more customizable than HTMLifier and forkphorus.">
-    <style>
-        body[p4-splash-theme="dark"]:not([p4-loaded]) {
-            background-color: #111;
-            color-scheme: dark;
-        }
-
-        .input-for-remembering-project-file {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <noscript>This page requires JavaScript.</noscript><input type="file" class="input-for-remembering-project-file" autocomplete="on"><div id="app"></div>
-    <script>
-(function() {
+    <style>body[p4-splash-theme="dark"]:not([p4-loaded]) {
+        background-color: #111;
+        color-scheme: dark;
+      }
+      .input-for-remembering-project-file {
+        display: none;
+      }</style></head><body><noscript>This page requires JavaScript.</noscript><input type="file" class="input-for-remembering-project-file" autocomplete="on"><div id="app"></div><script>(function() {
         // This logic is only for the "splash" screen.
         // It's used to prevent a momentary white screen while the page is loading in dark mode.
         var theme = 'system';
@@ -31,6 +23,6 @@
         if (theme === 'system') theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.body.setAttribute('p4-splash-theme', theme);
       })();</script>
-    <script src="js/p4.1ac85105b718358c3a89.js"></script>
-</body>
-</html>
+      <script src="js/p4.93e278798fae7e5a0fa1.js"></script>
+    </body>
+    </html>
