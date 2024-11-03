@@ -28,11 +28,6 @@ Disallow: /*
 Allow: /*html$
 Disallow: /appAPl/*
 
-User-agent: Googlebot
-Disallow: /*
-Allow: /*html$
-Disallow: /appAPl/*
-
 User-agent: Baiduspider
 Disallow: /*
 Allow: /*html$
@@ -50,5 +45,3 @@ Disallow: /appAPl/*
 
 User-agent: *
 Disallow: /*
-Allow: /*html$
-Disallow: /appAPl/*
