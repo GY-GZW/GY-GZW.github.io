@@ -30,7 +30,7 @@ h1,h2,img {
 }
 
 img {
-    width: 80%; /* 宽度填满容器 */
+    width: 60%; /* 宽度填满容器 */
     height: auto; /* 高度自动，保持图片比例 */
 }
 
@@ -61,7 +61,7 @@ a {
 }
 
 .clickable-element {  
-    width: 50%; /* 调整为50%宽度 */
+    width: 100%; /* 调整为100%宽度 */
     height: 100px;  
     background-color: #87CEEB;  
     color: white;  
