@@ -25,13 +25,8 @@ h1, h2, h3, h4, h5, h6, p {
     color: white;
 }
 
-h1,h2,img {
+h1,h2 {
     text-align: center;
-}
-
-img {
-    width: 60%; /* 宽度填满容器 */
-    height: auto; /* 高度自动，保持图片比例 */
 }
 
 h2 {
