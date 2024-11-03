@@ -61,7 +61,7 @@ a {
 }
 
 .clickable-element {  
-    width: 100%; /* 调整为100%宽度 */
+    width: 50%; /* 调整为50%宽度 */
     height: 100px;  
     background-color: #87CEEB;  
     color: white;  
