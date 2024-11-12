@@ -55,8 +55,19 @@ a {
     font-size: 16px;
 }
 
-.clickable-element {  
+.clickable-list {
     width: 100%; /* 调整为100%宽度 */
+    max-height: 500px; /* 设置最大高度 */
+    overflow-y: auto; /* 添加滚动条 */
+    border: 1px solid #ccc; /* 添加边框 */
+    border-radius: 10px; /* 圆角边框 */
+    padding: 10px; /* 内边距 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clickable-element {  
     height: 100px;  
     background-color: #87CEEB;  
     color: white;  
@@ -66,6 +77,8 @@ a {
     border-radius: 10px;  
     transition: transform 0.3s ease;  
     box-shadow: none;  
+    width: 90%; /* 设置宽度为90% */
+    margin: 5px; /* 设置外边距 */
 }  
   
 .clickable-element:hover {  
@@ -79,7 +92,7 @@ a {
     left: 40px;
     right: 40px;
     bottom: 40px;
-    background-color:  rgb(135, 206, 235) ; 
+    background-color:  rgb(135, 206, 235); 
     color: white;
     border-radius: 20px;
     padding: 20px;
