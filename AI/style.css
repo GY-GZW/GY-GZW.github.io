@@ -1,0 +1,190 @@
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    max-width: 100%; /* 确保不超过视口宽度 */
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    max-width: 800px; /* 设置一个最大宽度，例如800px */
+    margin: 0 auto; /* 居中显示 */
+    padding: 20px;
+    background-color: #000000;
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    position: relative;
+    animation: fadeInContainer 1s ease-in-out;
+    overflow: hidden;
+}
+
+#input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#input-box {
+    max-width: 100%; /* 限制最大宽度为视口宽度 */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#input-box:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px #007BFF;
+}
+
+#send-button, #clear-button, #cancel-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#send-button {
+    background-color: #007BFF;
+    color: white;
+}
+
+#send-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#send-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+#clear-button {
+    background-color: #ff4d4f;
+    color: white;
+}
+
+#clear-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#clear-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+#cancel-button {
+    background-color: #ffcc00;
+    color: white;
+}
+
+#cancel-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#cancel-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+#chat-log {
+    flex-grow: 1;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#chat-log p {
+    margin-bottom: 0;
+    animation: fadeInText 0.5s ease-in-out;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #000000;
+    color: #ffffff;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0 10px; /* 减少body的padding */
+    }
+
+    #chat-container {
+        padding: 10px;
+    }
+
+    #input-box, #send-button, #clear-button, #cancel-button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #chat-log {
+        padding: 8px;
+    }
+
+    #chat-log p {
+        font-size: 14px;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}
+
+@keyframes fadeInContainer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
