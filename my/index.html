@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人首页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="javascript:history.back(-1);">返回上一页</a></li>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#projects">项目</a></li>
+                <li><a href="#contact">联系方式</a></li>
+                <li><button id="playButton">原神启动</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>关于我</h2>
+        <p>我是上古米歇尔-果园-FD-工作，一个SB。</p>
+    </section>
+
+    <section id="projects">
+        <h2>项目</h2>
+        <div class="project">
+            <h3>项目一：没东东</h3>
+            <p>没东东</p>
+        </div>
+        <div class="project">
+            <h3>项目二：没东东</h3>
+            <p>没东东</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>联系方式：</h2>
+        <p>邮箱：2373460868</p>
+        <p>GitHub：<a href="https://github.com/gy-gzw">我的GitHub</a></p>
+    </section>
+
+    <footer>
+        <p>版权所有 &copy; 上古米歇尔-果园-FD-工作 2024</p>
+    </footer>
+    <script>
+        var audio = new Audio('Shed A Light.mp3');
+        // 设置音频为循环播放
+        audio.loop = true;
+
+        document.getElementById('playButton').addEventListener('click', function () {
+            // 检查音频是否已暂停或已结束，虽然由于设置了循环，ended 检查可能不是必需的
+            if (audio.paused) {
+                audio.play();
+                // 播放成功通常不需要额外的处理，除非你需要更新 UI 或执行其他逻辑
+                console.log('音频开始播放（如果之前已暂停）');
+
+                // 如果你需要处理播放错误（如文件无法加载），你可以保留这个事件监听器
+                audio.addEventListener('error', function (e) {
+                    // 处理音频加载错误
+                    console.error('音频加载错误:', e);
+                    // 可能还需要停止尝试播放并给用户一些反馈
+                    audio.pause(); // 停止尝试播放
+                    alert('音频加载失败，请检查文件路径或网络连接。');
+                });
+
+                // 你还可以添加其他事件监听器，如 'play', 'pause', 'ended'（但在这个循环播放的场景下，ended 可能不太有用）
+            }
+        });
+
+        // 注意：在这个例子中，'ended' 事件监听器可能不是必需的，因为音频会循环播放
+        // 但如果你需要在每次循环结束时执行某些操作，你可以这样做：
+        // audio.addEventListener('ended', function () {
+        //     console.log('音频播放结束（但在这个循环播放的例子中，这不会触发）');
+        //     // 这里可以执行一些操作，但请注意，由于设置了 loop，这个事件监听器实际上不会触发
+        // });
+    </script>
+</body>
+</html>

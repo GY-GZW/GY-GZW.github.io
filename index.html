@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>果园编程副站</title>
+    <script src="vaptcha.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: black; /* 设置为黑色背景 */
+            color: white; /* 通常也会设置文字颜色为白色以提高可读性 */
+        }
+
+        h2 {
+            color: white; /* 确保标题也是白色的 */
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50; /* 按钮的背景色 */
+            color: white; /* 按钮的文字颜色 */
+            border: none; /* 移除默认的边框 */
+            border-radius: 5px; /* 边框圆角 */
+        }
+
+            button:hover {
+                background-color: #45a049; /* 鼠标悬停时的背景色 */
+            }
+        .VAPTCHA-init-main {
+            display: table;
+            width: 100%;
+            height: 100%;
+            background-color: #eeeeee;
+        }
+
+        .VAPTCHA-init-loading {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .VAPTCHA-init-loading > a {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: none;
+        }
+
+        .VAPTCHA-init-loading .VAPTCHA-text {
+            font-family: sans-serif;
+            font-size: 12px;
+            color: #cccccc;
+            vertical-align: middle;
+        }
+        /* 广告容器样式 */
+        .ad-container {
+            border: 2px solid #FFA500; /* 边框 */
+            padding: 20px; /* 内边距 */
+            margin-top: 30px; /* 与上方内容的间距 */
+            width: 100%;
+            max-width: 400px; /* 最大宽度限制 */
+            background-color: rgba(255, 255, 255, 0.1); /* 背景颜色 */
+            text-align: center; /* 文本居中 */
+        }
+
+        /* 广告链接样式 */
+        .ad-container a {
+            color: #FFA500; /* 文字颜色 */
+            text-decoration: none; /* 无下划线 */
+        }
+
+        /* 广告链接悬停样式 */
+        .ad-container a:hover {
+            text-decoration: underline; /* 鼠标悬停时添加下划线 */
+        }
+    </style>
+</head>
+<body>
+    <h1>果园编程（原果园工作室）</h1>
+    <!-- 验证容器 -->
+    <div id="VAPTCHAContainer" style="width: 300px; height: 36px;">
+        <!-- 预加载动画（可选） -->
+        <div class="VAPTCHA-init-main">
+            <div class="VAPTCHA-init-loading">
+                <span class="VAPTCHA-text">Vaptcha 验证加载中...</span>
+            </div>
+        </div>
+    </div>
+    <!-- 广告区域1 -->
+    <div class="ad-container">
+        <div class="ad-title">广告：小兴-兴仔的MMO方块派对·寒冰季节重磅来临</div>
+        <p>新一代联机游戏，点个赞吧</p>
+        <a href="https://ccw.site/s/81k6m" class="ad-link" target="_blank">立即访问</a>
+
+    </div>
+    <!-- 广告区域2 -->
+    <div class="ad-container">
+        <div class="ad-title">提示：最近我的同学要访问本站，欢迎我的同学</div>
+        <p>欢迎</p>
+        <p>如有任何问题可联系QQ：2373460868，微信：guozhaowen7</p>
+    </div>
+    <script>
+        // 初始化VAPTCHA
+        vaptcha({
+            vid: '66bddd22dc0ff12924d9a196', // 请将'请填写您的VID'替换为实际获取的VID
+            mode: 'click',
+            scene: 0,
+            container: '#VAPTCHAContainer',
+            area: 'auto',
+        }).then(function (VAPTCHAObj) {
+            // 将VAPTCHA验证实例保存到局部变量中
+            var obj = VAPTCHAObj;
+            // 渲染验证组件
+            VAPTCHAObj.render();
+
+            // 监听验证通过事件
+            VAPTCHAObj.listen('pass', function () {
+                var serverToken = VAPTCHAObj.getServerToken();
+                window.location.href = 'https://gy-gzw.github.io/home';
+            });
+
+            // 监听验证弹窗关闭事件（可选）
+            VAPTCHAObj.listen('close', function () {
+                console.log('验证弹窗已关闭');
+            });
+
+            VAPTCHAObj.reset();
+        });
+    </script>
+</body>
+</html>

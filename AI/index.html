@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>果园AI</title>
+    <link rel="stylesheet" href="style.css" type="text/css" charset="UTF-8">
+</head>
+<body>
+    <div id="chat-container">
+        <div id="input-area">
+            <textarea id="input-box" placeholder="请输入我的问题..."></textarea>
+            <button id="send-button">发送给AI</button>
+            <button id="clear-button">清空我们的对话记录</button>
+            <button id="cancel-button">停止回答</button>
+        </div>
+        <div id="chat-log"></div>
+    </div>
+    <footer>
+        服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。<br>
+        AI不能记住你的对话！！！！！
+    </footer>
+    <script src="marked.min.js"></script>
+    <script src="chat.js"></script>
+    <script>
+        function scrollToBottom(element) {
+            element.scrollTop = element.scrollHeight;
+        }
+
+        // 监听滚动事件
+        document.getElementById('chat-log').addEventListener('scroll', function() {
+            this.classList.toggle('user-scrolling', this.scrollTop > 0);
+        });
+    </script>
+</body>
+</html>
