@@ -1,19 +1,173 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-CN">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="https://gy-gzw.github.io/Sharefiles/css/%E7%BA%AF%E9%BB%91%E8%83%8C%E6%99%AF.css" type="text/css">
-    <title>果园打赏</title>
+    <title>支持果园工作室</title>
+    <style>
+        /* 基础样式 */
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f8f9fa;
+            font-family: 'Microsoft Yahei', sans-serif;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        /* 返回按钮样式 */
+        .home-btn {
+            position: absolute;
+            left: -40px;
+            top: 10px;
+            background: rgba(231, 76, 60, 0.1);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #e74c3c;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .home-btn:hover {
+            background: rgba(231, 76, 60, 0.2);
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .home-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #2d3436;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 12px;
+            position: relative;
+        }
+
+        /* 文字描述 */
+        .description {
+            color: #636e72;
+            line-height: 1.8;
+            margin: 25px 0;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 二维码容器 */
+        .qr-container {
+            margin: 35px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            display: inline-block;
+        }
+
+        /* 二维码图片 */
+        .img-code {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 8px;
+            transition: opacity 0.3s;
+        }
+
+        /* 页脚文字 */
+        .footer-text {
+            color: #7f8c8d;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                margin-top: 30px;
+            }
+
+            .home-btn {
+                position: static;
+                margin: 0 auto 25px;
+                width: fit-content;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .qr-container {
+                padding: 15px;
+                margin: 25px 0;
+            }
+
+            .img-code {
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .description {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>果园打赏</h1>
-        <h2>好心人给点米吧，我们是公益工作室不赚钱的</h2>
-        <h2>谢谢你好心人</h2>
-        <img src="image.jpg" alt="404 - NOT FOUND">
+        <!-- 返回按钮 -->
+        <a href="/home" class="home-btn">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            返回首页
+        </a>
+
+        <h1>🍎 果园工作室捐助通道</h1>
+        
+        <p class="description">
+            本网站由果园工作室独立开发完成，从服务器搭建到界面设计，<br>
+            每一行代码都凝聚着个人和团队的心血与努力。<br>
+            如果您认可我们的作品，欢迎通过微信扫码支持。
+        </p>
+
+        <div class="qr-container">
+            <img src="pay.jpg" alt="微信支付二维码加载中..." class="img-code">
+        </div>
+
+        <p class="footer-text">请使用微信扫码进行捐助支持 | 感谢您的每一份心意</p>
     </div>
 </body>
 </html>
