@@ -2,7 +2,7 @@ body {
     margin: 0;  
     padding: 0;  
     background-color: black;  
-    background-image: url('https://bing.img.run/rand_uhd.php');
+    background-image: url('https://api.imlazy.ink/img/');
     background-size: cover; /* 使背景图片覆盖整个容器 */
     font-family: Arial, sans-serif;  
     display: flex;  
