@@ -2,7 +2,7 @@ body {
     margin: 0;  
     padding: 0;  
     background-color: black;  
-    background-image: url('https://api.imlazy.ink/img/');
+    background-image: url('https://t.alcy.cc/moe');
     background-size: cover; /* 使背景图片覆盖整个容器 */
     font-family: Arial, sans-serif;  
     display: flex;  
@@ -136,5 +136,8 @@ a {
         right: 10px;
         bottom: 10px;
         border-radius: 10px;
+    }
+    body{
+        background-image: url('https://t.alcy.cc/moemp');
     }
 }
