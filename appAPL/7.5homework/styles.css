@@ -2,7 +2,7 @@ body {
     margin: 0;  
     padding: 0;  
     background-color: black;  
-    background-image: url('https://t.alcy.cc/moe');
+    background-image: url('https://t.alcy.cc/pc');
     background-size: cover; /* 使背景图片覆盖整个容器 */
     font-family: Arial, sans-serif;  
     display: flex;  
@@ -138,6 +138,6 @@ a {
         border-radius: 10px;
     }
     body{
-        background-image: url('https://t.alcy.cc/moemp');
+        background-image: url('https://t.alcy.cc/mp');
     }
 }
