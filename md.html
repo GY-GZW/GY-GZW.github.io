@@ -1,106 +1,83 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于班级问题的反馈</title>
+    <title>403</title>
     <style>
         body {
-            font-family: "Microsoft YaHei", "SimHei", sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            background: #808080;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .header {
             text-align: center;
+            background: #000000;
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+            color: #ffffff;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+        h2 {
+            color: #ffffff;
+        }
+        p {
+            font-size: 20px;
+            color: #ffffff;
             margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
         }
-        .content {
-            padding: 10px;
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        .problem-list {
-            margin: 15px 0;
-            padding-left: 20px;
-        }
-        .problem-list li {
-            margin-bottom: 8px;
-        }
-        .signature {
-            margin-top: 20px;
-            text-align: right;
-            font-style: italic;
-            color: #666;
-        }
-        .highlight {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-        .suggestion {
-            background-color: #f0f8ff;
-            padding: 10px;
-            border-left: 3px solid #3498db;
-            margin: 15px 0;
+
+            .button:hover {
+                background: #0056b3;
+            }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h2>尊敬的徐老师：</h2>
-        </div>
-        <div class="content">
-            <p>您好！</p>
-            
-            <p>我是您班级的学生，关于班级管理的一些问题，我想向您反映以下情况：</p>
-            
-            <p>首先，根据您的明确要求，班级不允许建立同学群，但有同学<strong>门禹昕</strong>仍然建立了群组。在该群中，我遇到了以下问题：</p>
-            
-            <ul class="problem-list">
-                <li><span class="highlight">违反规定建群</span>：<strong>门禹昕</strong>同学在您明确禁止的情况下，仍然建立了班级群。</li>
-                <li><span class="highlight">歧视行为</span>：我在群中经常受到不公平对待。</li>
-                <li><span class="highlight">选择性规则</span>：不允许我发布计算机相关内容，而其他同学可以随意发布。</li>
-                <li><span class="highlight">双重标准</span>：不允许我骂人，但其他同学却可以随意辱骂，而我一旦回应就会被指责。</li>
-                <li><span class="highlight">威胁行为</span>：经常受到威胁，要求我遵守不合理的规则。</li>
-                <li><span class="highlight">不良内容</span>：群内存在大量谈恋爱、打游戏、扯淡等与学习无关的内容，严重影响学习氛围。</li>
-            </ul>
-            
-            <p>此外，<strong>门禹昕</strong>同学还有一些其他问题，严重影响班级秩序和同学的学习环境：</p>
-            
-            <ul class="problem-list">
-                <li><span class="highlight">上学带手机</span>：<strong>门禹昕</strong>同学经常在上课期间使用手机，影响自己和周围同学的学习。</li>
-                <li><span class="highlight">抽烟行为</span>：多次发现<strong>门禹昕</strong>同学在校园内或校外抽烟，严重违反学校规定。</li>
-                <li><span class="highlight">玩火危险</span>：<strong>门禹昕</strong>同学在班级内烧纸，存在严重的安全隐患。</li>
-                <li><span class="highlight">与外班学生交谈</span>：<strong>门禹昕</strong>同学经常与外班学生交谈，违反了您的班级管理规定。</li>
-            </ul>
-            
-            <div class="suggestion">
-                <p><strong>建议：</strong>希望老师能够关注此事，对<strong>门禹昕</strong>同学的行为进行教育和管理，确保班级秩序和同学的安全。同时，建议对班级群进行规范管理，确保群内交流内容积极健康，符合学习氛围。</p>
-                
-                <p>此外，我观察到班级中部分同学（包括一些成绩较好的同学）也存在类似的行为问题，可能对班级整体氛围产生了不良影响。希望老师能够全面关注班级的整体情况，帮助我们共同营造一个更加积极向上的学习环境。</p>
-            </div>
-            
-            <p>我认为这些行为不仅违反了班级和学校的规章制度，也对其他同学的学习和安全造成了不良影响。希望您能给予指导和解决。</p>
-            
-            <p>感谢您的理解和支持！</p>
-            
-            <div class="signature">
-                <p>此致</p>
-                <p>敬礼！</p>
-                <p>您的学生</p>
-                <p>2025年4月4日</p>
-            </div>
-        </div>
+        <h1>403</h1>
+        <p>哎呀，你访问了一个施工中的网址哦，拒绝访问，以后再来探索吧</p>
+        <h2>为什么会有这个错误</h2>
+        <p>403 Forbidden，是HTTP协议中的一个状态码(Status Code)。可以简单的理解为没有权限访问此站。该状态表示服务器理解了本次请求但是拒绝执行该任务，该请求不该重发给服务器。在HTTP请求的方法不是“HEAD”，并且服务器想让客户端知道为什么没有权限的情况下，服务器应该在返回的信息中描述拒绝的理由。在服务器不想提供任何反馈信息的情况下，服务器可以用404 Not Found代替403 Forbidden。</p>
+        <p>这里有一些解决办法：</p>
+        <a href="https://gy-gzw.github.io" class="button">返回首页</a>
+        <a href="https://gy-gzw.github.io/so" class="button">返回果园搜搜</a>
+        <a href="javascript:history.back(-1);" class="button">返回上一页（测试）</a>
+
     </div>
 </body>
 </html>
