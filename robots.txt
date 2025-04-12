@@ -1,1 +1,1 @@
-sitemap: https://gy-gzw.github.io/sitemaps.xml
+sitemap: https://gy-gzw.github.io/sitemap.xml
