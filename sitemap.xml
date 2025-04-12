@@ -110,4 +110,9 @@
         <priority>0.5</priority>
         <changefreq>weekly</changefreq>
     </sitemap>
+    <sitemap>
+        <loc>https://gy-gzw.github.io/LagrangeBuilder/index.html</loc>
+        <priority>0.5</priority>
+        <changefreq>never</changefreq>
+    </sitemap>
 </sitemapindex>
