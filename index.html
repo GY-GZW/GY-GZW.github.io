@@ -109,6 +109,12 @@
         <p>这个游戏的灵感来于我超级智障的同学耿德超</p>
         <a href="https://github.com/GY-GZW/gengdebiaoParkour/" class="ad-link" target="_blank">立即围观</a>
     </div>
+    <!-- 广告区域3 -->
+    <div class="ad-container">
+        <div class="ad-title">分手了！！！！</div>
+        <p>张智豪和闫紫玥分手了！！！</p>
+        <button id="playButton">分手快乐</button>
+    </div>
     <script>
         // 初始化VAPTCHA
         vaptcha({
@@ -135,6 +141,27 @@
             });
 
             VAPTCHAObj.reset();
+        });
+        var audio = new Audio('Happy breakup.mp3');
+        // 设置音频为循环播放
+        audio.loop = true;
+
+        document.getElementById('playButton').addEventListener('click', function () {
+            // 检查音频是否已暂停或已结束，虽然由于设置了循环，ended 检查可能不是必需的
+            if (audio.paused) {
+                audio.play();
+                // 播放成功通常不需要额外的处理，除非你需要更新 UI 或执行其他逻辑
+                console.log('音频开始播放（如果之前已暂停）');
+
+                // 如果你需要处理播放错误（如文件无法加载），你可以保留这个事件监听器
+                audio.addEventListener('error', function (e) {
+                    // 处理音频加载错误
+                    console.error('音频加载错误:', e);
+                    // 可能还需要停止尝试播放并给用户一些反馈
+                    audio.pause(); // 停止尝试播放
+                    alert('音频加载失败，请检查文件路径或网络连接。');
+                });
+            }
         });
     </script>
 </body>
