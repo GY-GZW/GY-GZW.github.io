@@ -71,14 +71,29 @@ async function sendMessage() {
     const userMessage = escapeHtml(messageInput.value.trim());
     if (!userMessage) return;
 
-    appendMessage(converter.makeHtml(userMessage), 'user-message');
+    // 为用户消息创建一个独立的容器
+    const userMessageDiv = document.createElement('div');
+    userMessageDiv.classList.add('chat-message', 'user-message');
+    userMessageDiv.style.padding = '10px';
+    userMessageDiv.style.borderRadius = '5px';
+    userMessageDiv.style.marginBottom = '10px';
+    userMessageDiv.innerHTML = converter.makeHtml(userMessage);
+
+    chatBody.appendChild(userMessageDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
     messageInput.value = '';
-    
+
     try {
         const selectedApi = apiSelector.value;
-        const response = await callOpenRouterAPI(userMessage, selectedApi);
-        Chatcontent.push({ role: "assistant", content: response });
-        appendMessage(converter.makeHtml(response), 'ai-message');
+        // 调用API并获取流式输出
+        const aiMessageDivId = await callOpenRouterAPI(userMessage, selectedApi);
+        // 确保聊天内容数组中的消息与页面显示一致
+        const aiMessageDiv = document.getElementById(aiMessageDivId);
+        if (aiMessageDiv) {
+            // 使用textContent来获取纯文本内容
+            Chatcontent.push({ role: "assistant", content: aiMessageDiv.textContent });
+        }
     } catch (error) {
         console.error('API调用错误:', error);
         appendMessage(`请求失败: ${error.message}`, 'ai-message');
@@ -87,7 +102,9 @@ async function sendMessage() {
 
 async function callOpenRouterAPI(userMessage, modelType) {
     abortController = new AbortController();
-    
+    let content = ''; // 用于累加流式返回的内容
+    let aiMessageDivId = `ai-message-${Date.now()}`; // 为AI消息创建一个唯一的ID
+
     try {
         const config = API_CONFIG[modelType];
         const headers = new Headers();
@@ -96,6 +113,7 @@ async function callOpenRouterAPI(userMessage, modelType) {
         headers.append('HTTP-Referer', encodeURIComponent(window.location.href));
         headers.append('X-Title', encodeURIComponent('果园AI测试'));
         Chatcontent.push({ role: "user", content: userMessage });
+        
         const response = await fetch(config.url, {
             method: 'POST',
             headers: headers,
@@ -103,6 +121,7 @@ async function callOpenRouterAPI(userMessage, modelType) {
                 model: config.model,
                 messages: Chatcontent,
                 temperature: 0.8,
+                stream: true // 启用流式输出
             }),
             signal: abortController.signal
         });
@@ -112,11 +131,60 @@ async function callOpenRouterAPI(userMessage, modelType) {
             throw new Error(errorData.error?.message || 'API请求失败');
         }
 
-        const data = await response.json();
-        return data.choices[0].message.content;
+        // 使用ReadableStream读取流式数据
+        const reader = response.body.getReader();
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            const text = new TextDecoder().decode(value);
+            const lines = text.split('\n').filter(line => line.trim() !== '');
+            
+            for (const line of lines) {
+                // 去除前缀 "data: "
+                const jsonStr = line.replace(/^data: /, '');
+                
+                if (jsonStr === '[DONE]') {
+                    // 流式传输结束
+                    return aiMessageDivId;
+                }
+                
+                try {
+                    const data = JSON.parse(jsonStr);
+                    if (data.choices && data.choices[0] && data.choices[0].delta && data.choices[0].delta.content) {
+                        const deltaContent = data.choices[0].delta.content;
+                        content += deltaContent;
+                        
+                        // 创建或获取AI消息的容器
+                        let aiMessageDiv = document.getElementById(aiMessageDivId);
+                        if (!aiMessageDiv) {
+                            aiMessageDiv = document.createElement('div');
+                            aiMessageDiv.id = aiMessageDivId;
+                            aiMessageDiv.classList.add('chat-message', 'ai-message');
+                            aiMessageDiv.style.padding = '10px';
+                            aiMessageDiv.style.borderRadius = '5px';
+                            aiMessageDiv.style.marginBottom = '10px';
+                            chatBody.appendChild(aiMessageDiv);
+                        }
+                        
+                        // 更新AI消息的容器内容
+                        aiMessageDiv.innerHTML = converter.makeHtml(content);
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                    }
+                } catch (e) {
+                    console.warn('JSON解析错误:', e);
+                    console.log('尝试解析的字符串:', jsonStr);
+                }
+            }
+        }
+    } catch (error) {
+        console.error('API调用错误:', error);
+        appendMessage(`请求失败: ${error.message}`, 'ai-message');
     } finally {
         abortController = null;
     }
+
+    return aiMessageDivId;
 }
 
 function appendMessage(text, messageType) {
