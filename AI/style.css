@@ -30,6 +30,8 @@ body, html {
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
+    background-image: url('https://t.alcy.cc/pc');
+    background-size: cover;
 }
 
 .chat-message {
@@ -109,7 +111,7 @@ body, html {
 .hints {
     margin: 10px 0;
     padding: 10px;
-    background-color: #f0f0f0;
+    background-color: #f0f0f070;
     border-radius: 5px;
 }
 
@@ -129,15 +131,39 @@ body, html {
 }
 
 @media (max-width: 768px) {
+    body, html {
+        font-size: 14px;
+    }
+
     .chat-header {
-        font-size: 18px;
+        font-size: 16px;
     }
 
-    .chat-message {
-        max-width: 80%;
+    .chat-body {
+        background-image: url('https://t.alcy.cc/mp');
     }
 
-    .message-input {
-        padding: 8px;
+    .chat-footer {
+        flex-direction: column;
+        align-items: center; /* 添加这行代码 */
+        gap: 10px;
+    }
+    
+    .select-api, .message-input, .message-button {
+        width: 100%;
+        max-width: 80%; /* 添加这行代码 */
+    }
+
+    .control-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .control-button {
+        flex: 1;
+        margin: 5px;
+        min-width: 30%;
     }
 }

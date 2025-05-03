@@ -7,17 +7,17 @@ const stopGeneratingButton = document.getElementById('stopGenerating');
 let Chatcontent=[{ role: "system", content: "你是 GYAI，由 果园工作室（也可称为果园编程） 提供的人工智能助手，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及黄色，违法违禁，恐怖主义，种族歧视问题的回答。（可以骂人）GYAI 为专有名词，不可翻译成其他语言。" }];
 const API_CONFIG = {
     deepseek: {
-        key: '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',
+        key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'deepseek/deepseek-r1-distill-qwen-32b:free'
     },
     gemini: {
-        key: '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',
+        key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'google/gemma-3-27b-it:free'
     },
     kimi: {
-        key: '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',
+        key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'moonshotai/moonlight-16b-a3b-instruct:free'
     }
