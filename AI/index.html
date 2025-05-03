@@ -1,39 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="果园AI">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>果园AI</title>
+    <meta name="description" content="果园AI-探索无限可能，发现未知世界">
     <link rel="stylesheet" href="style.css" type="text/css" charset="UTF-8">
+    <title>果园AI-探索无限可能，发现未知世界</title>
 </head>
 <body>
-    <div id="chat-container">
-        <div id="input-area">
-            <textarea id="input-box" placeholder="请输入我的问题..."></textarea>
-            <button id="send-button">发送给AI</button>
-            <button id="clear-button">清空我们的对话记录</button>
-            <button id="cancel-button">停止回答</button>
+    <div class="chat-container">
+        <div class="chat-header">
+            果园AI1.0-接入DS免费用！
         </div>
-        <div id="chat-log"></div>
+        <div class="chat-body">
+            <div class="hints">
+                <div>AI可以记住你的上下文！！！</div>
+                <div>AI有请求限制</div>
+                <div>如果迟迟不生成，AI可能正在生成长文本，请稍等~</div>
+                <div>API由openrouter.ai提供</div>
+                <div class="important">服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。</div>
+                <div>Hub版本：6.0.0，更新时间：2025年5月03日17点30分，最后编辑者：上古米歇尔/GY-GZW（2373460868），本项目采用 Guoyuan License For Page 许可证</div>
+                <div>52vmy输出对Markdown提供支持，但是DS的Markdown有Bug。Markdown版本：CommonMark0.3.0</div>
+                <div>Deepseek版本：蒸馏R1</div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <select id="apiSelector" class="select-api">
+                <option value="kimi">Kimi Moonlight 16B A3B Instruct</option>
+                <option value="gemini">Gemini 2.0 Flash Thinking Experimental</option>
+                <option value="deepseek">DeepSeek：R1 Distill Qwen 32B</option>
+            </select>
+            <input type="text" id="messageInput" class="message-input" placeholder="请输入消息...">
+            <button id="sendMessage" class="message-button">发送请求</button>
+            <div class="control-buttons">
+                <button id="stopGenerating" class="control-button">停止生成</button>
+                <button id="clearChat" class="control-button">清空聊天并清除上下文</button>
+                <a href="/home" target="_blank" class="control-button">返回果园编程主站</a>
+            </div>
+        </div>
     </div>
-    <footer>
-        服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。<br>
-        AI不能记住你的对话！！！！！
-    </footer>
-    <script src="marked.min.js"></script>
+    <script src="caidan.js"></script>
+    <script src="showdown.min.js"></script>
     <script src="chat.js"></script>
-    <script>
-        function scrollToBottom(element) {
-            element.scrollTop = element.scrollHeight;
-        }
-
-        // 监听滚动事件
-        document.getElementById('chat-log').addEventListener('scroll', function() {
-            this.classList.toggle('user-scrolling', this.scrollTop > 0);
-        });
-    </script>
-    <script src="/caidan.js"></script>
 </body>
 </html>

@@ -1,77 +1,127 @@
-let abortController = null;
+const chatBody = document.querySelector('.chat-body');
+const messageInput = document.getElementById('messageInput');
+const apiSelector = document.getElementById('apiSelector');
+const sendMessageButton = document.getElementById('sendMessage');
+const clearChatButton = document.getElementById('clearChat');
+const stopGeneratingButton = document.getElementById('stopGenerating');
+let Chatcontent=[{ role: "system", content: "你是 GYAI，由 果园工作室（也可称为果园编程） 提供的人工智能助手，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及黄色，违法违禁，恐怖主义，种族歧视问题的回答。（可以骂人）GYAI 为专有名词，不可翻译成其他语言。" }];
+const API_CONFIG = {
+    deepseek: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'deepseek/deepseek-r1-distill-qwen-32b:free'
+    },
+    gemini: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'google/gemini-2.0-flash-thinking-exp:free'
+    },
+    kimi: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'moonshotai/moonlight-16b-a3b-instruct:free'
+    }
+};
 
-document.getElementById('send-button').addEventListener('click', function() {
-    const inputBox = document.getElementById('input-box');
-    const chatLog = document.getElementById('chat-log');
+function escapeHtml(text) {
+    return text.replace(/[&<>"']/g, function(match) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[match];
+    });
+  }          
 
-    if (inputBox.value.trim() === '') return;
-
-    // 显示用户输入的问题
-    chatLog.innerHTML += `<p style="animation-delay: 0.1s;"><strong>我:</strong> ${inputBox.value}</p>`;
-
-    // 生成随机的userid
-    const userid = generateRandomNumber();
-    const modelId = userid.toString().substring(0, 5).replace(/\./g, ''); // 获取前五位并去掉小数点
-
-    // 果园AI提示信息
-    chatLog.innerHTML += `<p style="animation-delay: 0.3s;"><strong>果园AI提示:</strong> 果园AI已经理解您的问题，并将使用模型${modelId}来解答。</p>`;
-
-    // 构造请求URL
-    const requestUrl = `https://api.sizhi.com/chat?spoken=${encodeURIComponent(inputBox.value)}&stream=false&userid=${userid}`;
-
-    // 设置超时时间
-    const timeoutId = setTimeout(() => {
-        chatLog.innerHTML += '<p style="animation-delay: 0.5s;"><strong>果园AI提示:</strong> AI正在生成长文本，等待时间较长，望各位仁兄稍等下……</p>';
-    }, 3000); // 假设超时时间为3秒
-
-    // 创建AbortController实例
-    abortController = new AbortController();
-    const signal = abortController.signal;
-
-    // 发送请求到API
-    fetch(requestUrl, { signal })
-        .then(response => response.json())
-        .then(data => {
-            clearTimeout(timeoutId); // 取消超时计时器
-
-            if (data.status === 0 && data.data.type === 'text') {
-                // 显示AI的回答
-                const markdownText = data.data.info.text;
-                const htmlText = marked.parse(markdownText);
-                chatLog.innerHTML += `<p style="animation-delay: 0.7s;"><strong>果园AI4.0：</strong>${htmlText}</p>`;
-
-                // 检查用户是否已经开始手动滚动
-                if (!chatLog.classList.contains('user-scrolling')) {
-                    scrollToBottom(chatLog);
-                }
-            } else {
-                chatLog.innerHTML += '<p style="animation-delay: 0.7s;"><strong>错误:</strong> 请求失败，请稍后再试，不行找2373460868</p>';
-            }
-        })
-        .catch(error => {
-            clearTimeout(timeoutId); // 取消超时计时器
-            if (signal.aborted) {
-                chatLog.innerHTML += '<p style="animation-delay: 0.7s;"><strong>果园AI提示:</strong> AI已停止请求。</p>';
-            } else {
-                chatLog.innerHTML += '<p style="animation-delay: 0.7s;"><strong>错误:</strong> 请求失败，请检查网络连接，不行找2373460868</p>';
-            }
-        });
-
-    inputBox.value = ''; // 清空输入框
+sendMessageButton.addEventListener('click', () => {
+    sendMessage();
 });
 
-document.getElementById('clear-button').addEventListener('click', function() {
-    const chatLog = document.getElementById('chat-log');
-    chatLog.innerHTML = ''; // 清空聊天记录
+messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
 });
 
-document.getElementById('cancel-button').addEventListener('click', function() {
+clearChatButton.addEventListener('click', () => {
+    const messages = chatBody.querySelectorAll('.chat-message');
+    messages.forEach(message => message.remove());
+    Chatcontent=[{ role: "system", content: "你是 GYAI，由 果园工作室（也可称为果园编程） 提供的人工智能助手，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及黄色，违法违禁，恐怖主义，种族歧视问题的回答。（可以骂人）GYAI 为专有名词，不可翻译成其他语言。" }];
+});
+
+stopGeneratingButton.addEventListener('click', () => {
     if (abortController) {
-        abortController.abort(); // 中断请求
+        abortController.abort();
+        appendMessage('用户停止了生成', 'ai-message');
         abortController = null;
     }
 });
 
-function generateRandomNumber() {
-    return Math.floor(Math.random()* 1000000000); // 生成一个随机数
+const converter = new showdown.Converter();
+let abortController = null;
+
+async function sendMessage() {
+    const userMessage = escapeHtml(messageInput.value.trim());
+    if (!userMessage) return;
+
+    appendMessage(converter.makeHtml(userMessage), 'user-message');
+    messageInput.value = '';
+    
+    try {
+        const selectedApi = apiSelector.value;
+        const response = await callOpenRouterAPI(userMessage, selectedApi);
+        Chatcontent.push({ role: "assistant", content: response });
+        appendMessage(converter.makeHtml(response), 'ai-message');
+    } catch (error) {
+        console.error('API调用错误:', error);
+        appendMessage(`请求失败: ${error.message}`, 'ai-message');
+    }
+}
+
+async function callOpenRouterAPI(userMessage, modelType) {
+    abortController = new AbortController();
+    
+    try {
+        const config = API_CONFIG[modelType];
+        const headers = new Headers();
+        headers.append('Authorization', `Bearer ${config.key}`);
+        headers.append('Content-Type', 'application/json');
+        headers.append('HTTP-Referer', encodeURIComponent(window.location.href));
+        headers.append('X-Title', encodeURIComponent('果园AI测试'));
+        Chatcontent.push({ role: "user", content: userMessage });
+        const response = await fetch(config.url, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({
+                model: config.model,
+                messages: Chatcontent,
+                temperature: 0.8,
+            }),
+            signal: abortController.signal
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || 'API请求失败');
+        }
+
+        const data = await response.json();
+        return data.choices[0].message.content;
+    } finally {
+        abortController = null;
+    }
+}
+
+function appendMessage(text, messageType) {
+    const message = document.createElement('div');
+    message.classList.add('chat-message', messageType);
+    message.style.padding = '10px';
+    message.style.borderRadius = '5px';
+    message.style.marginBottom = '10px';
+    message.innerHTML = text;
+
+    chatBody.appendChild(message);
+    chatBody.scrollTop = chatBody.scrollHeight;
 }
