@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>果园编程副站</title>
-    <script src="vaptcha.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,153 +15,70 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            background-color: black; /* 设置为黑色背景 */
-            color: white; /* 通常也会设置文字颜色为白色以提高可读性 */
+            background-color: black;
+            color: white;
         }
 
         h2 {
-            color: white; /* 确保标题也是白色的 */
+            color: white;
             margin-bottom: 20px;
         }
         button {
             padding: 10px 20px;
             cursor: pointer;
-            background-color: #4CAF50; /* 按钮的背景色 */
-            color: white; /* 按钮的文字颜色 */
-            border: none; /* 移除默认的边框 */
-            border-radius: 5px; /* 边框圆角 */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
         }
 
             button:hover {
-                background-color: #45a049; /* 鼠标悬停时的背景色 */
+                background-color: #45a049;
             }
-        .VAPTCHA-init-main {
-            display: table;
-            width: 100%;
-            height: 100%;
-            background-color: #eeeeee;
-        }
-
-        .VAPTCHA-init-loading {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-        }
-
-        .VAPTCHA-init-loading > a {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: none;
-        }
-
-        .VAPTCHA-init-loading .VAPTCHA-text {
-            font-family: sans-serif;
-            font-size: 12px;
-            color: #cccccc;
-            vertical-align: middle;
-        }
         /* 广告容器样式 */
         .ad-container {
-            border: 2px solid #FFA500; /* 边框 */
-            padding: 20px; /* 内边距 */
-            margin-top: 30px; /* 与上方内容的间距 */
+            border: 2px solid #FFA500;
+            padding: 20px;
+            margin-top: 30px;
             width: 100%;
-            max-width: 400px; /* 最大宽度限制 */
-            background-color: rgba(255, 255, 255, 0.1); /* 背景颜色 */
-            text-align: center; /* 文本居中 */
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.1);
+            text-align: center;
         }
 
         /* 广告链接样式 */
         .ad-container a {
-            color: #FFA500; /* 文字颜色 */
-            text-decoration: none; /* 无下划线 */
+            color: #FFA500;
+            text-decoration: none;
         }
 
         /* 广告链接悬停样式 */
         .ad-container a:hover {
-            text-decoration: underline; /* 鼠标悬停时添加下划线 */
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <h1>果园编程（原果园工作室）</h1>
-    <!-- 验证容器 -->
-    <div id="VAPTCHAContainer" style="width: 300px; height: 36px;">
-        <!-- 预加载动画（可选） -->
-        <div class="VAPTCHA-init-main">
-            <div class="VAPTCHA-init-loading">
-                <span class="VAPTCHA-text">Vaptcha 验证加载中...</span>
-            </div>
-        </div>
-    </div>
-    <!-- 广告区域1 -->
+    <!-- Turnstile 验证容器 -->
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAABZ9F468aXoVU4UU" data-callback="handleValidation"></div>
+    <!-- 广告区域1 --><!--
     <div class="ad-container">
         <div class="ad-title">广告：小兴-兴仔的MMO方块派对·寒冰季节重磅来临</div>
         <p>新一代联机游戏，点个赞吧</p>
         <a href="https://ccw.site/s/81k6m" class="ad-link" target="_blank">立即访问</a>
 
-    </div>
-    <!-- 广告区域2 -->
-    <div class="ad-container">
-        <div class="ad-title">250耿德彪跑酷</div>
-        <p>这个游戏的灵感来于我超级智障的同学耿德超</p>
-        <a href="https://github.com/GY-GZW/gengdebiaoParkour/" class="ad-link" target="_blank">立即围观</a>
-    </div>
-    <!-- 广告区域3 -->
-    <div class="ad-container">
-        <div class="ad-title">分手了！！！！</div>
-        <p>张智豪和闫紫玥分手了！！！</p>
-        <button id="playButton">分手快乐</button>
-    </div>
+    </div>-->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script>
-        // 初始化VAPTCHA
-        vaptcha({
-            vid: '66bddd22dc0ff12924d9a196', // 请将'请填写您的VID'替换为实际获取的VID
-            mode: 'click',
-            scene: 0,
-            container: '#VAPTCHAContainer',
-            area: 'auto',
-        }).then(function (VAPTCHAObj) {
-            // 将VAPTCHA验证实例保存到局部变量中
-            var obj = VAPTCHAObj;
-            // 渲染验证组件
-            VAPTCHAObj.render();
+        // 替换为您的Cloudflare Turnstile站点密钥
+        const YOUR_SITE_KEY = '0x4AAAAAABZ9F468aXoVU4UU';
 
-            // 监听验证通过事件
-            VAPTCHAObj.listen('pass', function () {
-                var serverToken = VAPTCHAObj.getServerToken();
-                window.location.href = 'https://gy-gzw.github.io/home';
-            });
-
-            // 监听验证弹窗关闭事件（可选）
-            VAPTCHAObj.listen('close', function () {
-                console.log('验证弹窗已关闭');
-            });
-
-            VAPTCHAObj.reset();
-        });
-        var audio = new Audio('Happy breakup.mp3');
-        // 设置音频为循环播放
-        audio.loop = true;
-
-        document.getElementById('playButton').addEventListener('click', function () {
-            // 检查音频是否已暂停或已结束，虽然由于设置了循环，ended 检查可能不是必需的
-            if (audio.paused) {
-                audio.play();
-                // 播放成功通常不需要额外的处理，除非你需要更新 UI 或执行其他逻辑
-                console.log('音频开始播放（如果之前已暂停）');
-
-                // 如果你需要处理播放错误（如文件无法加载），你可以保留这个事件监听器
-                audio.addEventListener('error', function (e) {
-                    // 处理音频加载错误
-                    console.error('音频加载错误:', e);
-                    // 可能还需要停止尝试播放并给用户一些反馈
-                    audio.pause(); // 停止尝试播放
-                    alert('音频加载失败，请检查文件路径或网络连接。');
-                });
-            }
-        });
+        // 验证通过后的处理逻辑
+        function handleValidation(token) {
+            // 跳转到目标页面
+            window.location.href = 'https://gy-gzw.github.io/home';
+        }
     </script>
     <script src="/caidan.js"></script>
 </body>
