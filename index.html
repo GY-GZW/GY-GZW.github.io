@@ -1,83 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <meta name="description" content="果园编程副站人机验证页面">
+    <meta name="description" content="重定向">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>果园编程副站</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            background-color: black;
-            color: white;
-        }
-
-        h2 {
-            color: white;
-            margin-bottom: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-            button:hover {
-                background-color: #45a049;
-            }
-        /* 广告容器样式 */
-        .ad-container {
-            border: 2px solid #FFA500;
-            padding: 20px;
-            margin-top: 30px;
-            width: 100%;
-            max-width: 400px;
-            background-color: rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        /* 广告链接样式 */
-        .ad-container a {
-            color: #FFA500;
-            text-decoration: none;
-        }
-
-        /* 广告链接悬停样式 */
-        .ad-container a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>重定向</title>
 </head>
 <body>
-    <h1>果园编程（原果园工作室）</h1>
-    <a href="https://ipw.cn/ssl/?site=guoyuancode.dpdns.org" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
-    <!-- Turnstile 验证容器 -->
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAABaPd1pU7xA8mc2m" data-callback="handleValidation"></div>
-    <!-- 广告区域1 --><!--
-    <div class="ad-container">
-        <div class="ad-title">广告：小兴-兴仔的MMO方块派对·寒冰季节重磅来临</div>
-        <p>新一代联机游戏，点个赞吧</p>
-        <a href="https://ccw.site/s/81k6m" class="ad-link" target="_blank">立即访问</a>
-
-    </div>-->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script>
-        // 替换为您的Cloudflare Turnstile站点密钥
-        const YOUR_SITE_KEY = '0x4AAAAAABaPd1pU7xA8mc2m';
-
-        // 验证通过后的处理逻辑
-        function handleValidation(token) {
-            // 跳转到目标页面
-            window.location.href = 'https://guoyuancode.dpdns.org/home';
-        }
+        window.location.href = 'https://guoyuancode.dpdns.org/home';
     </script>
     <script src="/caidan.js"></script>
 </body>
