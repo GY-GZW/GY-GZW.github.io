@@ -1,10 +1,5 @@
 // 配置区域：分离 API 配置和核心逻辑
 const API_CONFIG = {
-    qwen3: {
-        key: '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',
-        url: 'https://openrouter.ai/api/v1/chat/completions',
-        model: 'qwen/qwen3-235b-a22b:free'
-    },
     deepseek: {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
